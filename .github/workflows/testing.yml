@@ -30,3 +30,7 @@ jobs:
         run: php -v
       - name: Test de composer
         run: composer -v
+      - name: Renommer le fichier env
+        run: mv _.env.exempl .env
+      - name: Installer le vendor
+        run: composer install
