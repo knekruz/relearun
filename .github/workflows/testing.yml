@@ -31,6 +31,12 @@ jobs:
       - name: Test de composer
         run: composer -v
       - name: Renommer le fichier env
-        run: mv _.env.exempl .env
+        run: cp _.env.exempl .env
       - name: Installer le vendor
         run: composer install
+      - name: Créer la base
+        run: php bin/console doctrine:database:create
+      - name: Creation du fichier migration SQL
+        run: php bin/console make:migration
+      - name: Execution du script SQL
+        run: php bin/console -n doctrine:migrations:migrate
